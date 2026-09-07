@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -25,7 +26,7 @@
     <main>
 
         <section id="home">
-            <h2>Hello, I'm Yu Alliah</h2>
+            <h2>Hello, I'm Alliah</h2>
 
             <p>
                 Welcome to my personal portfolio website.
@@ -37,6 +38,8 @@
                 This portfolio contains information about me,
                 my skills, projects, and contact information.
             </p>
+
+            <button id="welcomeButton">Say Hello</button>
         </section>
 
         <hr>
@@ -45,7 +48,7 @@
             <h2>About Me</h2>
 
             <p>
-                I am a college student studying Information Technology.
+                I am a college student at Cavite State University-Mani Campus, studying Information Technology.
                 I am currently learning programming, web development,
                 and other technologies related to computer science.
             </p>
@@ -116,8 +119,10 @@
     <hr>
 
     <footer>
-        <p>© 2026 My Portfolio. All Rights Reserved.</p>
-    </footer>
+    <p>© <span id="year"></span> My Portfolio. All Rights Reserved.</p>
+</footer>
+
+<script src="script.js"></script>
 
 </body>
 </html>
