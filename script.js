@@ -20,36 +20,12 @@ const projects = document.querySelectorAll("article");
 
 projects.forEach(function (project) {
     project.addEventListener("click", function () {
-        project.style.transform = "scale(1.02)";
+        project.style.transform = "scale(1.01)";
 
         setTimeout(function () {
             project.style.transform = "scale(1)";
         }, 200);
     });
-});
-
-
-// Theme toggle: light / dark green, remembered between visits
-const themeToggle = document.getElementById("themeToggle");
-const body = document.body;
-
-const applyTheme = (theme) => {
-    body.classList.remove("light-theme", "dark-theme");
-    body.classList.add(theme === "dark" ? "dark-theme" : "light-theme");
-    themeToggle.setAttribute(
-        "aria-label",
-        theme === "dark" ? "Switch to light theme" : "Switch to dark theme"
-    );
-};
-
-const savedTheme = localStorage.getItem("portfolio-theme") || "light";
-applyTheme(savedTheme);
-
-themeToggle.addEventListener("click", function () {
-    const isDark = body.classList.contains("dark-theme");
-    const nextTheme = isDark ? "light" : "dark";
-    applyTheme(nextTheme);
-    localStorage.setItem("portfolio-theme", nextTheme);
 });
 
 
@@ -62,7 +38,7 @@ const highlightNav = () => {
 
     sections.forEach((section) => {
         const rect = section.getBoundingClientRect();
-        if (rect.top <= 120) {
+        if (rect.top <= 140) {
             currentId = section.id;
         }
     });
