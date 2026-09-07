@@ -29,6 +29,30 @@ projects.forEach(function (project) {
 });
 
 
+// Theme toggle: light / dark green, remembered between visits
+const themeToggle = document.getElementById("themeToggle");
+const body = document.body;
+
+const applyTheme = (theme) => {
+    body.classList.remove("light-theme", "dark-theme");
+    body.classList.add(theme === "dark" ? "dark-theme" : "light-theme");
+    themeToggle.setAttribute(
+        "aria-label",
+        theme === "dark" ? "Switch to light theme" : "Switch to dark theme"
+    );
+};
+
+const savedTheme = localStorage.getItem("portfolio-theme") || "light";
+applyTheme(savedTheme);
+
+themeToggle.addEventListener("click", function () {
+    const isDark = body.classList.contains("dark-theme");
+    const nextTheme = isDark ? "light" : "dark";
+    applyTheme(nextTheme);
+    localStorage.setItem("portfolio-theme", nextTheme);
+});
+
+
 // Highlight the current section's nav link while scrolling
 const sections = document.querySelectorAll("main section[id]");
 const navLinks = document.querySelectorAll(".nav-link");

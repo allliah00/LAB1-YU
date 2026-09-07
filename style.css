@@ -1,10 +1,22 @@
-:root {
-    --bg: #F7F6F2;
+:root,
+body.light-theme {
+    --bg: #FCFCFA;
     --surface: #FFFFFF;
-    --ink: #1B1D1B;
-    --muted: #6B6F6D;
+    --ink: #14181B;
+    --muted: #5B615C;
     --accent: #1F6F4A;
-    --border: #E2E0D8;
+    --accent-ink: #FFFFFF;
+    --border: #E4E7E1;
+}
+
+body.dark-theme {
+    --bg: #0F1712;
+    --surface: #16211A;
+    --ink: #E9EDE9;
+    --muted: #93A398;
+    --accent: #4CAF7D;
+    --accent-ink: #0F1712;
+    --border: #26332B;
 }
 
 * {
@@ -22,40 +34,45 @@ body {
     line-height: 1.65;
     background: var(--bg);
     color: var(--ink);
+    transition: background 0.2s ease, color 0.2s ease;
 }
 
 /* Header */
 header {
     background: var(--bg);
     border-bottom: 1px solid var(--border);
-    padding: 22px 8%;
+    padding: 20px 8%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: sticky;
     top: 0;
     z-index: 1000;
+    transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 header h1 {
     font-family: 'Fraunces', serif;
     font-weight: 600;
-    font-size: 22px;
+    font-size: 21px;
     color: var(--ink);
+    letter-spacing: -0.01em;
 }
 
 nav {
     display: flex;
-    gap: 28px;
+    align-items: center;
+    gap: 26px;
 }
 
 nav a {
     color: var(--muted);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     padding-bottom: 4px;
     border-bottom: 2px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
 }
 
 nav a:hover {
@@ -67,15 +84,42 @@ nav a.is-active {
     border-bottom-color: var(--accent);
 }
 
+.theme-toggle {
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.15s ease;
+}
+
+.theme-toggle:hover {
+    border-color: var(--accent);
+}
+
+#themeDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: block;
+    transition: background 0.2s ease;
+}
+
 /* Sections */
 main {
-    max-width: 780px;
+    max-width: 740px;
     margin: auto;
 }
 
 section {
-    padding: 72px 8%;
+    padding: 68px 8%;
     border-bottom: 1px solid var(--border);
+    transition: border-color 0.2s ease;
 }
 
 section:last-of-type {
@@ -85,8 +129,9 @@ section:last-of-type {
 section h2 {
     font-family: 'Fraunces', serif;
     font-weight: 600;
-    font-size: 1.7rem;
+    font-size: 1.6rem;
     margin-bottom: 20px;
+    letter-spacing: -0.01em;
 }
 
 section p {
@@ -97,24 +142,24 @@ section p {
 
 /* Home */
 #home {
-    padding-top: 96px;
-    padding-bottom: 96px;
+    padding-top: 92px;
+    padding-bottom: 92px;
 }
 
 .eyebrow {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     color: var(--accent);
     margin-bottom: 14px;
 }
 
 #home h2 {
-    font-size: 2.6rem;
+    font-size: 2.5rem;
     margin-bottom: 20px;
 }
 
 #home p {
-    font-size: 1.05rem;
+    font-size: 1.03rem;
     color: var(--muted);
 }
 
@@ -128,19 +173,20 @@ section p {
 
 #skills li {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.85rem;
+    font-size: 0.83rem;
     background: var(--surface);
     color: var(--ink);
     border: 1px solid var(--border);
     padding: 8px 16px;
     border-radius: 999px;
+    transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 /* Projects */
 article {
-    padding: 24px 0;
+    padding: 22px 0;
     border-top: 1px solid var(--border);
-    transition: transform 0.15s ease;
+    transition: transform 0.15s ease, border-color 0.2s ease;
 }
 
 article:first-of-type {
@@ -151,7 +197,7 @@ article:first-of-type {
 article h3 {
     font-family: 'Fraunces', serif;
     font-weight: 600;
-    font-size: 1.15rem;
+    font-size: 1.12rem;
     margin-bottom: 8px;
 }
 
@@ -167,14 +213,15 @@ article p {
 /* Footer */
 footer {
     text-align: center;
-    padding: 28px;
+    padding: 26px;
     color: var(--muted);
-    font-size: 0.85rem;
+    font-size: 0.84rem;
     border-top: 1px solid var(--border);
+    transition: border-color 0.2s ease;
 }
 
 /* Button */
-button {
+button#welcomeButton {
     font-family: 'Inter', sans-serif;
     padding: 12px 24px;
     border: none;
@@ -183,11 +230,12 @@ button {
     margin-top: 12px;
     font-weight: 500;
     background: var(--accent);
-    color: white;
-    font-size: 0.95rem;
+    color: var(--accent-ink);
+    font-size: 0.94rem;
+    transition: opacity 0.15s ease, background 0.2s ease, color 0.2s ease;
 }
 
-button:hover {
+button#welcomeButton:hover {
     opacity: 0.9;
 }
 
@@ -209,7 +257,7 @@ button:focus-visible {
     nav {
         flex-wrap: wrap;
         justify-content: center;
-        gap: 18px;
+        gap: 16px;
     }
 
     #home h2 {
@@ -217,7 +265,7 @@ button:focus-visible {
     }
 
     section {
-        padding: 52px 6%;
+        padding: 50px 6%;
     }
 }
 
